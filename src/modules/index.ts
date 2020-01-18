@@ -1,9 +1,15 @@
-import { combineReducers } from "redux"
-import todos from './todos'
+import {applyMiddleware, createStore, compose} from 'redux'
+import {composeWithDevTools} from 'redux-devtools-extension/developmentOnly'
+import createSagaMiddleware from 'redux-saga'
+import reducer from './reducers'
+// import rootSaga from "./sagas/sagas"
 
-const rootReducer = combineReducers({
-  todos
-})
+type InitialState = null | any
 
-export default rootReducer
-export type RootState = ReturnType<typeof rootReducer>
+export const sagaMiddleware = createSagaMiddleware()
+const middlewares = [sagaMiddleware]
+const _compose = process.env.NODE_ENV !== 'production' ? composeWithDevTools({serialize: true, trace: true}) : compose
+
+const store =  (initialState: InitialState) => createStore(reducer, initialState, _compose(applyMiddleware(...middlewares)))
+export default store((window as any).__REDUX_STATE__)
+// sagaMiddleware.run(rootSaga)

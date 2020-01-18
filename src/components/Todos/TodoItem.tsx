@@ -1,6 +1,6 @@
 import React from 'react';
 import './TodoItem.css';
-import { Todo } from '../../modules/todos';
+import { Todo } from '../../modules/reducers/todos';
 import useTodoActions from "../../hooks/useTodoActions"
 
 type TodoItemProps = {
