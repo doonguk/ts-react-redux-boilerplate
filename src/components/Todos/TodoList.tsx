@@ -1,6 +1,6 @@
 import React from 'react';
 import { Todo } from '../../modules/reducers/todos';
-import TodoItem from './TodoItem';
+import TodoItem from './TodoItem/TodoItem';
 import useTodos from '../../hooks/useTodos'
 
 function TodoList() {
