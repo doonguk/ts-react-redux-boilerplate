@@ -1,14 +1,13 @@
-import React from 'react';
-import TodoList from "./components/Todos/TodoList"
-import TodoInsert from "./components/Todos/TodoInsert"
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
+import { TodoPage, MainPage, NotFoundPage} from "./pages"
 
-const App: React.FC = () => {
-  return (
-    <>
-      <TodoInsert/>
-      <TodoList/>
-      </>
-  );
+export default function App() {
+  return(
+    <Switch>
+      <Route exact path={'/'} component={MainPage}/>
+      <Route path={'/todo'} component={TodoPage}/>
+      <Route component={NotFoundPage}/>
+    </Switch>
+  )
 }
-
-export default App;
