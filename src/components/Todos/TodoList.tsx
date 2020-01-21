@@ -1,5 +1,5 @@
 import React from 'react';
-import { Todo } from '../../modules/reducers/todos';
+import { Todo } from '../../modules/todos';
 import TodoItem from './TodoItem/TodoItem';
 import useTodos from '../../hooks/useTodos'
 

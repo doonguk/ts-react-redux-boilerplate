@@ -9,6 +9,9 @@ export default function MainPage(){
         <li>
           <Link to={'/todo'}>Go Todo Page</Link>
         </li>
+        <li>
+          <Link to={'/employees'}>Go Employees Page</Link>
+        </li>
       </ul>
     </div>
   )

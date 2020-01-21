@@ -27,7 +27,7 @@ const initialState: TodosState = []
 // }
 
 export default createReducer<TodosState, TodosAction>(initialState, {
-  [ADD_TODO] : (state, {payload : text}) => {
+  [ADD_TODO] : (state, {payload :text}) => {
     return state.concat({
       id: Math.max(...state.map(todo => todo.id)) + 1,
       text,
