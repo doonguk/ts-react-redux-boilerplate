@@ -3,21 +3,19 @@ import { EmployeesAction, EmployeesState } from "./types"
 import {EMPLOYEE} from "./actions"
 
 const initialState: EmployeesState = {
-  employees : [],
+  data : [],
   status : "INIT"
 }
 
 export default createReducer<EmployeesState, EmployeesAction>(initialState, {
   [EMPLOYEE.REQUEST] : (state, action) => {
-    console.log('action',action)
     return {...state, status : 'LOADING'}
   },
   [EMPLOYEE.FAILURE] : (state, action) => {
-    console.log('action',action)
+    console.log('action',action) // 임시
     return { ...state, status : 'FAILURE'}
   },
-  [EMPLOYEE.SUCCESS] : (state, action) => {
-    console.log('action',action)
-    return { ...state, status : 'SUCCESS'}
+  [EMPLOYEE.SUCCESS] : (state, {payload : {data}}): EmployeesState => {
+    return {...state, ...data}
   }
 })

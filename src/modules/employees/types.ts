@@ -16,7 +16,8 @@ export type Employee = {
   employee_age: number
   profile_image: string
 }
+
 export type EmployeesState = {
   status: 'INIT' | 'LOADING' | 'SUCCESS' | 'FAILURE'
-  employees : Employee[] | []// state type
+  data : Employee[] | []// state type
 }

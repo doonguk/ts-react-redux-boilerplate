@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { call, put, take } from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
+
 export type ApiEndPoint<R, P extends any[]> = (...p: P) => Promise<R>;
 
 type Entity<R, S, F> = {
@@ -14,8 +14,8 @@ export const createEntityAction = <R, S, F, PARAM extends any[], DATA>(
 ) => ({
   ACTION: {
     REQUEST: () => ({ type: entity.REQUEST }),
-    SUCCESS: (data: DATA) => ({ type: entity.SUCCESS, payload: data }),
-    FAILURE: () => ({ type: entity.FAILURE })
+    SUCCESS: (result: DATA) => ({ type: entity.SUCCESS, payload: result }),
+    FAILURE: (e: Error) => ({ type: entity.FAILURE, payload : e})
   },
   API: api
 });
@@ -40,8 +40,8 @@ export function fetchEntity<T extends EntityActionType>({ ACTION, API }: T) {
       yield put(ACTION.REQUEST());
       const data = yield call(API, ...p);
       yield put(ACTION.SUCCESS(data));
-    } catch {
-      yield put(ACTION.FAILURE());
+    } catch(e) {
+      yield put(ACTION.FAILURE(e));
     }
   };
 }

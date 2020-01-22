@@ -7,7 +7,7 @@ const getEmployeesSaga = fetchEntity(employeeEntity);
 
 export default function* getEmployeesWatcher() {
   while (true) {
-    yield take(GET_EMPLOYEES);
-    yield call(getEmployeesSaga);
+    yield take(GET_EMPLOYEES)
+    yield call(getEmployeesSaga)
   }
 }

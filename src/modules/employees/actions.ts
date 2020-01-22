@@ -12,7 +12,5 @@ export const EMPLOYEE = {
   FAILURE: 'GET_EMPLOYEE_FAILURE'
 } as const;
 
-export const getEmployees = () => createAction(GET_EMPLOYEES)()
-
-
+export const getEmployees = () => ({type : GET_EMPLOYEES})
 

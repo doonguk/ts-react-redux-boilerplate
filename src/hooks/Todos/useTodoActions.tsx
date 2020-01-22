@@ -1,6 +1,6 @@
 import {useDispatch} from "react-redux"
 import { useCallback } from 'react'
-import {removeTodo, toggleTodo} from "../modules/todos"
+import {removeTodo, toggleTodo} from "../../modules/todos"
 
 export default function useTodoActions(id: number){
   const dispatch = useDispatch()

@@ -11,5 +11,6 @@ const middlewares = [sagaMiddleware]
 const _compose = process.env.NODE_ENV !== 'production' ? composeWithDevTools({serialize: true, trace: true}) : compose
 
 const store =  (initialState: InitialState) => createStore(reducer, initialState, _compose(applyMiddleware(...middlewares)))
+
 export default store((window as any).__REDUX_STATE__)
 sagaMiddleware.run(rootSaga)

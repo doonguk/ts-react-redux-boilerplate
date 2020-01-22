@@ -1,7 +1,7 @@
 import React from 'react';
 import { Todo } from '../../modules/todos';
 import TodoItem from './TodoItem/TodoItem';
-import useTodos from '../../hooks/useTodos'
+import useTodos from '../../hooks/Todos/useTodos'
 
 function TodoList() {
   const todos = useTodos()
