@@ -1,8 +1,14 @@
 import {ActionType} from "typesafe-actions"
-import {getEmployees} from "./actions"
+import {EMPLOYEE, getEmployees, getEmployeesAPI} from "./actions"
+import {createEntityAction, EntityAction} from "../../models"
 
 const actions = {getEmployees}
-export type EmployeesAction = ActionType<typeof actions>
+
+export const employeeEntity = createEntityAction(EMPLOYEE, getEmployeesAPI); // {ACTION: ~, API: ~}
+type EmployeeEntity = EntityAction<typeof employeeEntity>
+export type EmployeesAction = ActionType<typeof actions> | EmployeeEntity
+
+
 export type Employee = {
   id: number
   employee_name: string
@@ -10,4 +16,7 @@ export type Employee = {
   employee_age: number
   profile_image: string
 }
-export type EmployeesState = Employee[]
+export type EmployeesState = {
+  status: 'INIT' | 'LOADING' | 'SUCCESS' | 'FAILURE'
+  employees : Employee[] | []// state type
+}

@@ -1,12 +1,18 @@
-// import { createAction } from "typesafe-actions"
+import axios from 'axios'
+import { createAction } from "typesafe-actions"
+import {Employee} from "./types"
 
-export const GET_EMPLOYEES = 'employees/GET_EMPLOYEES'
+export const getEmployeesAPI = async () => await axios.get<Employee[]>('http://dummy.restapiexample.com/api/v1/employees')
+// return 타입 지정 빠짐
 
-export const getEmployees = () => ({
-  type : GET_EMPLOYEES,
-  payload : {
-    url : 'http://dummy.restapiexample.com/api/v1',
-    method : 'get',
-    path : 'employees'
-  }
-})
+export const GET_EMPLOYEES = 'GET_EMPLOYEES' as const;
+export const EMPLOYEE = {
+  REQUEST: 'GET_EMPLOYEE_REQUEST',
+  SUCCESS: 'GET_EMPLOYEE_SUCCESS',
+  FAILURE: 'GET_EMPLOYEE_FAILURE'
+} as const;
+
+export const getEmployees = () => createAction(GET_EMPLOYEES)()
+
+
+

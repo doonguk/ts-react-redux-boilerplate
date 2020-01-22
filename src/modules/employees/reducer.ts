@@ -1,11 +1,23 @@
 import { createReducer } from "typesafe-actions"
 import { EmployeesAction, EmployeesState } from "./types"
-import { GET_EMPLOYEES } from "./actions"
+import {EMPLOYEE} from "./actions"
 
-const initialState: EmployeesState = []
+const initialState: EmployeesState = {
+  employees : [],
+  status : "INIT"
+}
 
 export default createReducer<EmployeesState, EmployeesAction>(initialState, {
-  [GET_EMPLOYEES] : (state, {payload : data}) => {
-    return [...data]
+  [EMPLOYEE.REQUEST] : (state, action) => {
+    console.log('action',action)
+    return {...state, status : 'LOADING'}
+  },
+  [EMPLOYEE.FAILURE] : (state, action) => {
+    console.log('action',action)
+    return { ...state, status : 'FAILURE'}
+  },
+  [EMPLOYEE.SUCCESS] : (state, action) => {
+    console.log('action',action)
+    return { ...state, status : 'SUCCESS'}
   }
 })
